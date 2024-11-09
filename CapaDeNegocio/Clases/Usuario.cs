@@ -6,6 +6,9 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+
+
+
 namespace Crud
 {
     public class Usuario : IABMC<Usuario>, IUsuario
@@ -50,6 +53,8 @@ namespace Crud
 
             return datos.List();
         }
+
+
         #endregion
 
         #region IABMC
@@ -73,7 +78,8 @@ namespace Crud
         
         public void Modify()
         {
-         
+
+            datos.Modify(this);
             
         }
         #endregion
