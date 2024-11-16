@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace CapaDeNegocio
 {
-    internal interface IID
+    public interface IGenericSingleton<T>
     {
-        int ID { get; set; }
+        void Add(T Data);
+        void Erase(T Data);
+        void Modify(T Data);
+        string Find(T Data);
     }
 }
