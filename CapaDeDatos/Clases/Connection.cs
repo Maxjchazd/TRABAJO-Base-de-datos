@@ -29,13 +29,13 @@ namespace CapaDeDatos.Clases
                                                     
 
         public static Connection GetInstance => instance; // único punto de acceso para obtener la instancia de la conexión
-                                                         
+
 
         private Connection()
         {
             string PathConfig = AppDomain.CurrentDomain.BaseDirectory + "Web.config"; // Esta variable almacena la ruta
-            
-            
+
+
             if (File.Exists(PathConfig))
             {
                 ConnectionString = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
