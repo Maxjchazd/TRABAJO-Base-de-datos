@@ -9,78 +9,73 @@ using System.IO;
 
 
 
-namespace Crud
+
+
+
+namespace CapaDeNegocio
 {
-    public class Usuario : IABMC<Usuario>, IUsuario
+    public class Usuario : IABMC, IUsuario
+
     {
-        private static Datos datos =new Datos();
-        
+
+        internal Singleton S { get => Singleton.GetInstance; } //obtiene la instancia de Singleton
+
         #region IID
         public int ID { get ; set ; }
 
         #endregion
 
         #region IUsuario
-        public string Nombre { get ; set ; }
+        public string Nombre { get; set; }
         public int Dni { get; set; }
         public string Mail { get; set; }
 
-        public bool DniExist(int dni)
+        public bool DniExist()
         {
-         
-            return false;
-            
-        }
-        public bool MailExist(string mail)
-        {
-            return false;
-
-        }
-        //-------------realizar los alumnos
-        public Usuario FindDni(int dni)
-        {
-            throw new NotImplementedException();
+            return S.ISU.DniExists(this);
         }
 
-        public Usuario FindMail(string mail)
+        public bool MailExist()
         {
-            throw new NotImplementedException();
+            return S.ISU.MailExists(this);
         }
-        //---------------------------------
+
+        public string FindByDni()
+        {
+            return S.ISU.FindByDni(this);
+        }
+
+        public string FindByMail()
+        {
+            return S.ISU.FindByMail(this);
+        }
 
         public string List()
         {
-
-            return datos.List();
+            return S.ISU.List();
         }
-
 
         #endregion
 
         #region IABMC
         public void Add()
         {
-            datos.Add(this);
+            S.ISU.Add(this);
         }
+
         public void Erase()
         {
-            datos.Erase(this);
+            S.ISU.Erase(this);
         }
 
-        public Usuario Find()
+        public string Find()
         {
-          datos.Find(this);
-            return this;
-
-
-
+            return S.ISU.Find(this);
         }
-        
+
         public void Modify()
         {
-
-            datos.Modify(this);
-            
+            S.ISU.Modify(this);
         }
         #endregion
 
